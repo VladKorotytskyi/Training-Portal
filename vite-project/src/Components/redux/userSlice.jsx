@@ -5,10 +5,25 @@ const initialState = {
   xp: 0,
   level: 1,
   badges: [
-    { id: "b1", title: "Перші кроки", reqXp: 0, unlocked: true },
-    { id: "b2", title: "Старанний учень", reqXp: 30, unlocked: false },
-    { id: "b3", title: "Магістр Стайлінгу", reqXp: 60, unlocked: false }
-  ]
+    {
+      id: "b1",
+      title: "Перші кроки",
+      reqXp: 0,
+      unlocked: true,
+    },
+    {
+      id: "b2",
+      title: "Старанний учень",
+      reqXp: 30,
+      unlocked: false,
+    },
+    {
+      id: "b3",
+      title: "Магістр Слайдінгу",
+      reqXp: 60,
+      unlocked: false,
+    },
+  ],
 };
 
 const userSlice = createSlice({
@@ -17,15 +32,15 @@ const userSlice = createSlice({
   reducers: {
     addXpPoints: (state, action) => {
       state.xp += action.payload;
-      
-      state.level = Math.floor(state.xp / 50) + 1;
-      
-      state.badges = state.badges.map(badge => ({
+
+      state.level = Math.floor(state.xp / 50);
+
+      state.badges = state.badges.map((badge) => ({
         ...badge,
-        unlocked: state.xp >= badge.reqXp
+        unlocked: state.xp >= badge.reqXp,
       }));
-    }
-  }
+    },
+  },
 });
 
 export const { addXpPoints } = userSlice.actions;

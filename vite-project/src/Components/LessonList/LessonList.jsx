@@ -5,7 +5,6 @@ import { selectCourses } from "../../Components/redux/selectors";
 
 export const LessonList = () => {
   const courses = useSelector(selectCourses);
-
   return (
     <div>
       <h2>Ваші навчальні курси</h2>

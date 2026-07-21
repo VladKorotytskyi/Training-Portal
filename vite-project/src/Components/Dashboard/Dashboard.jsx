@@ -5,10 +5,10 @@ import { selectCompletedCoursesCount, selectInProgressCoursesCount, selectCourse
 
 export const Dashboard = () => {
   const completedCount = useSelector(selectCompletedCoursesCount);
-  const inProgressCount = useSelector(selectInProgressCoursesCount);
-  const courses = useSelector(selectCourses);
+  const cources = useSelector(selectCourses);
+  const inProgressCount = useSelector(selectCompletedCoursesCount)
 
-  const lastActiveCourse = courses[0];
+  const lastActiveCourse = cources[0];
 
   return (
     <div>
