@@ -1,16 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../Components/redux/selectors";
+import { selectUser } from "../redux/selectors.jsx";
 
 export const AchievementBadge = () => {
   const user = useSelector(selectUser);
 
+  const badges = user?.badges || [];
   return (
     <div>
       <h2>Твої досягнення</h2>
       <p>Набирай XP, виконуючи уроки, щоб відкрити нові значки!</p>
       <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
-        {user.badges.map(badge => (
+        {badges.map(badge => (
           <div 
             key={badge.id} 
             style={{

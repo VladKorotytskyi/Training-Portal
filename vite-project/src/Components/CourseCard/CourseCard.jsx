@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { selectCourses } from "../redux/selectors";
-import { addXpPoints } from "../redux/userSlice";
-import { toggleLessonCompletion } from "../redux/coursesSlice";
+import { selectCourses } from "../redux/selectors.jsx";
+import { toggleLessonCompletion } from "../redux/coursesSlice.jsx";
+import { addXpPoints } from "../redux/userSlice.jsx";
 
 export const CourseCard = () => {
   const { id } = useParams();
@@ -89,7 +89,7 @@ export const CourseCard = () => {
       >
         <div
           style={{
-            background: "#4CAF50",
+            background: "#ddff00",
             height: "100%",
             width: `${course.progress}%`,
             transition: "width 0.3s",

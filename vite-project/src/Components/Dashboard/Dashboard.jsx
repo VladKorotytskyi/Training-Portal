@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectCompletedCoursesCount, selectInProgressCoursesCount, selectCourses } from "../../Components/redux/selectors";
+import { selectCompletedCoursesCount, selectInProgressCoursesCount, selectCourses } from "../redux/selectors.jsx";
 
 export const Dashboard = () => {
   const completedCount = useSelector(selectCompletedCoursesCount);
   const cources = useSelector(selectCourses);
-  const inProgressCount = useSelector(selectCompletedCoursesCount)
+  const inProgressCount = useSelector(selectInProgressCoursesCount);
 
   const lastActiveCourse = cources[0];
 
@@ -25,14 +25,14 @@ export const Dashboard = () => {
       </div>
 
       {lastActiveCourse && (
-        <div style={{ border: "1px solid #4CAF50", padding: "20px", borderRadius: "8px" }}>
+        <div style={{ border: "1px solid #6c00af", padding: "20px", borderRadius: "8px" }}>
           <h3>Продовжити навчання</h3>
           <h4>{lastActiveCourse.title}</h4>
           <div style={{ background: "#eee", borderRadius: "4px", height: "10px", width: "10px", minWidth: "100%", overflow: "hidden", marginBottom: "10px" }}>
-            <div style={{ background: "#4CAF50", height: "100%", width: `${lastActiveCourse.progress}%`, transition: "width 0.3s" }}></div>
+            <div style={{ background: "#6c00af", height: "100%", width: `${lastActiveCourse.progress}%`, transition: "width 0.3s" }}></div>
           </div>
           <p>Прогрес: {lastActiveCourse.progress}%</p>
-          <Link to={`/lesson/${lastActiveCourse.id}`} style={{ display: "inline-block", padding: "8px 16px", background: "#4CAF50", color: "#fff", textDecoration: "none", borderRadius: "4px" }}>
+          <Link to={`/lesson/${lastActiveCourse.id}`} style={{ display: "inline-block", padding: "8px 16px", background: "#6c00af", color: "#fff", textDecoration: "none", borderRadius: "4px" }}>
             Перейти до уроків
           </Link>
         </div>

@@ -1,8 +1,8 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { coursesReducer } from "./coursesSlice";
-import { userReducer } from "./userSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { coursesReducer } from "./coursesSlice.jsx";
+import { userReducer } from "./userSlice.jsx";
 
 const rootReducer = combineReducers({
   courses: coursesReducer,
@@ -11,22 +11,18 @@ const rootReducer = combineReducers({
 
 const persistConfig = {
   key: "root",
-  storage: storage.default ? storage.default : storage,
+  storage: {
+    getItem: (key) => Promise.resolve(localStorage.getItem(key)),
+    setItem: (key, value) => Promise.resolve(localStorage.setItem(key, value)),
+    removeItem: (key) => Promise.resolve(localStorage.removeItem(key)),
+  },
+  whitelist: ["courses", "user"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const customMiddleware = (store) => (next) => (action) => {
-  return next(action);
-};
-
-
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }).concat(customMiddleware),
 });
 
 export const persistor = persistStore(store);

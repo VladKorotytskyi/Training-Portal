@@ -1,45 +1,41 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-const initialState = {
-  name: "User",
-  xp: 0,
-  level: 1,
-  badges: [
-    {
-      id: "b1",
-      title: "Перші кроки",
-      reqXp: 0,
-      unlocked: true,
-    },
-    {
-      id: "b2",
-      title: "Старанний учень",
-      reqXp: 30,
-      unlocked: false,
-    },
-    {
-      id: "b3",
-      title: "Магістр Слайдінгу",
-      reqXp: 60,
-      unlocked: false,
-    },
-  ],
-};
+import { fetchBadges } from "./operations.jsx";
 
 const userSlice = createSlice({
   name: "user",
-  initialState,
+  initialState: {
+    items: [],
+    xp: 0,
+    level: 1,
+    badges: [],
+    isLoading: false,
+    error: null,
+  },
   reducers: {
     addXpPoints: (state, action) => {
       state.xp += action.payload;
-
       state.level = Math.floor(state.xp / 50);
-
       state.badges = state.badges.map((badge) => ({
         ...badge,
         unlocked: state.xp >= badge.reqXp,
       }));
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBadges.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchBadges.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = action.payload;
+      })
+      .addCase(fetchBadges.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   },
 });
 

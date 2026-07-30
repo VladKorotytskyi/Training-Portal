@@ -7,11 +7,9 @@ import {
 } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./Components/redux/store.jsx";
-
 import { Header } from "./Components/Header/Header.jsx";
 import { Sidebar } from "./Components/Sidebar/Sidebar.jsx";
 import { Layout } from "./Components/Layout/Layout.jsx";
-
 import { Dashboard } from "./Components/Dashboard/Dashboard.jsx";
 import { LessonList } from "./Components/LessonList/LessonList.jsx";
 import { CourseCard } from "./Components/CourseCard/CourseCard.jsx";
