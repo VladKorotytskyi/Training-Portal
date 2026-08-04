@@ -20,6 +20,9 @@ const userSlice = createSlice({
         unlocked: state.xp >= badge.reqXp,
       }));
     },
+    updateName: (state, action) => {
+      state.name = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -39,5 +42,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { addXpPoints } = userSlice.actions;
+export const { addXpPoints, updateName } = userSlice.actions;
 export const userReducer = userSlice.reducer;
