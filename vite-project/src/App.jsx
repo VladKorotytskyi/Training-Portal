@@ -15,7 +15,7 @@ import { LessonList } from "./Components/LessonList/LessonList.jsx";
 import { CourseCard } from "./Components/CourseCard/CourseCard.jsx";
 import { AchievementBadge } from "./Components/AchievementBadge/AchievementBadge.jsx";
 
-function App() {
+export function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   return (
